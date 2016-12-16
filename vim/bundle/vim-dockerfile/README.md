@@ -1,26 +1,47 @@
-dockerfile.vim
+Dockerfile.vim
 ==============
 
-Syntax highlighting for Dockerfiles
+Vim syntax file for [Docker](http://docker.io/)'s [Dockerfile](http://docs.docker.com/reference/builder/)
+and snippets for [snipMate](http://www.vim.org/scripts/script.php?script_id=2540).
+
+Screenshot
+==========
+
+Here is an example in gnome-terminal with [vim-monokai](https://github.com/sickill/vim-monokai) color scheme:
+
+
+![Vim & Dockerfile.vim ](https://raw.github.com/ekalinin/Dockerfile.vim/master/vim-dockerfile-example.png)
+
+
 
 Installation
-------------
-With [pathogen](https://github.com/tpope/vim-pathogen), the usual way...
+============
 
-With [Vundle](https://github.com/gmarik/Vundle.vim)
-  
-    Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+```bash
+$ git clone https://github.com/ekalinin/Dockerfile.vim.git
+$ cd Dockerfile.vim
+$ make install
+```
 
-Features
---------
+####Or using Pathogen:
+```bash
+# Clone directly into the bundle folder.
+git clone https://github.com/ekalinin/Dockerfile.vim.git bundle/Dockerfile
+```
 
-The syntax highlighting includes:
+####Or using Vundle:
+```bash
+# near the top of your .vimrc
+Plugin 'ekalinin/Dockerfile.vim'
+```
 
-* The directives (e.g. `FROM`)
-* Strings
-* Comments
+####Or using NeoBundle:
+
+```bash
+NeoBundle 'ekalinin/Dockerfile.vim'
+```
 
 License
--------
+=======
 
-BSD, short and sweet
+See [LICENSE](https://github.com/ekalinin/Dockerfile.vim/blob/master/LICENSE) file.

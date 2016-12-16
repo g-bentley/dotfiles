@@ -1,0 +1,9 @@
+# pack-refs with: peeled 
+2ab04ae6aad058ac4f48e7d9d52b214089c8e86a refs/tags/vim-7.3
+69162ed07b2cb4fc368ca3b1d4b28874ae415382 refs/remotes/origin/spike
+f6d8ccdfdc2a356c95c3ed1d28db6fdf76b79d42 refs/remotes/origin/p5-corpus
+9a3718449e4f3fcfd6db0818085ea1c22d74a148 refs/remotes/origin/noexec
+91163b59af9702d11895d5944efc0cbbadcbeeae refs/remotes/origin/master
+f99a3d8c297a42b56057beb8e6580dc611c5c7ab refs/remotes/origin/keywords
+26e9857d2a8339bbda8fc6b834c506cef474a020 refs/remotes/origin/hoelzro/perl6-folding
+0d7f899c38d73c25449addd0b8f88427c5f75c9d refs/remotes/origin/dev

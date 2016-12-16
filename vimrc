@@ -1,9 +1,11 @@
 " 2016-07-23 - GMB - Added Pathogen, solarized, and Reynold's .vimrc.
 " 2016-09-16 - GMB - Added terminal color fix for Solarized light.
+" 2016-12-16 - GMB - Fixed swap directories.
+" Note: For SSH sessions, make sure vi is aliased to vim and TERM is xterm-256color.
+
 " http://stackoverflow.com/a/14094487
-""" Start Pathogen:
+" Start Pathogen:
 execute pathogen#infect()
-""" Vim stuff
 " Make Vim more useful
 set nocompatible
 " Set color scheme!¬
@@ -15,8 +17,7 @@ if !has('gui_running')
     let g:solarized_termtrans=1
 
     if (&t_Co >= 256 || $TERM == 'xterm-256color')
-        " Do nothing, it handles itself.
-        " 256 color does _NOT_ 'handle itself.'
+        " 256 color does _NOT_ 'handle itself.', at least in MacOS.
         let g:solarized_termcolors=256
     else
         " Make Solarized use 16 colors for Terminal support
@@ -40,29 +41,34 @@ set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
 " Change mapleader
-let mapleader=","
+let mapleader=','
 " Don’t add empty newlines at the end of files
 set binary
 set noeol
-" Centralize backups, swapfiles and undo history
-" set dir=~/.vimswap//,/var/tmp//,/tmp//,.
-"
-set backupdir=~/.vim/backups//,
-set directory=~/.vim/swaps//,
-if exists("&undodir")
+
+" Centralize backups, swap files, and undo history
+if exists('&backupdir')
+    set backupdir=~/.vim/backup//,
+endif
+if exists('directory')
+    set directory=~/.vim/swap//,
+endif
+if exists('&undodir')
     set undodir=~/.vim/undo//,
 endif
 
-set viminfo+=! " make sure vim history works
-map <C-J> <C-W>j<C-W>_ " open and maximize the split below
-map <C-K> <C-W>k<C-W>_ " open and maximize the split above
-set wmh=0 " reduces splits to a single line
+" Make sure vim history works
+set viminfo+=!
+" open and maximize the split below
+map <C-J> <C-W>j<C-W>_
+" open and maximize the split above
+map <C-K> <C-W>k<C-W>_
+" reduces splits to a single line
+set wmh=0
 
 " Enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
 set secure
-"""	""" " Enable syntax highlighting
-"""	""" syntax on
 " Highlight current line
 set cursorline
 " Make tabs as wide as 4 spaces
@@ -90,7 +96,10 @@ set laststatus=2
 set modeline
 set modelines=4
 " Enable mouse in all modes
-set mouse=a
+autocmd BufEnter * set mouse=
+if has('gui_running') && has('mouse')
+    set mouse=a
+endif
 " Disable error bells
 set noerrorbells
 " Don’t reset cursor to start of line when moving around.
@@ -109,20 +118,8 @@ set showcmd
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
 
-" Strip trailing whitespace (,ss)
-function! StripWhitespace()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    :%s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfunction
-noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
-
 " Automatic commands
-if has("autocmd")
+if has('autocmd')
     " Use filetype detection and file-based automatic indenting.
     filetype plugin indent on
     " Treat .json files as .js
@@ -133,3 +130,18 @@ if has("autocmd")
     au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
     "
 endif
+
+" Strip trailing whitespace (,ss)
+function! StripWhitespace()
+    let save_cursor = getpos('.')
+    let old_query = getreg('/')
+    :%s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfunction
+noremap <leader>ss :call StripWhitespace()<CR>
+" Save a file as root (,W)
+noremap <leader>W :w !sudo tee % > /dev/null<CR>
+" Toggle line numbers for quick copy and paste.
+map <F5> :set invnumber<CR>
+
