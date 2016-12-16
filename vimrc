@@ -15,6 +15,7 @@ syntax enable
 if !has('gui_running')
     " Compatibility for Terminal
     let g:solarized_termtrans=1
+    set background=dark
 
     if (&t_Co >= 256 || $TERM == 'xterm-256color')
         " 256 color does _NOT_ 'handle itself.', at least in MacOS.

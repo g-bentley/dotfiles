@@ -14,7 +14,6 @@ Quick fix if the exports do not work.
     alias vi-vim
 
 
-o
 Since almost all terminal emulators can handle full color, make sure PuTTY, et. al. play nice.
 
     set TERM=xterm-256color
