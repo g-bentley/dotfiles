@@ -1,6 +1,9 @@
-" 2016-07-23 - GMB - Added Pathogen, solarized, and Reynold's .vimrc.
-" 2016-09-16 - GMB - Added terminal color fix for Solarized light.
-" 2016-12-16 - GMB - Fixed swap directories.
+" Maintained by: Greg Bentley
+" 2016-07-23 -  Added Pathogen, solarized, and Reynold's .vimrc.
+" 2016-09-16 -  Added terminal color fix for Solarized light.
+" 2016-12-16 -  Fixed swap directories.
+" 2017-01-05 -  Disabled gdefault option
+"               Added <F7> specials toggle 
 " Note: For SSH sessions, make sure vi is aliased to vim and TERM is xterm-256color.
 
 " http://stackoverflow.com/a/14094487
@@ -37,8 +40,9 @@ set esckeys
 set backspace=indent,eol,start
 " Optimize for fast terminal connections
 set ttyfast
+" Do _NOT_ set gdefault _EVER_. This will change g to match 1 OR all.
 " Add the g flag to search/replace by default
-set gdefault
+"""set gdefault
 " Use UTF-8 without BOM
 set encoding=utf-8 nobomb
 " Change mapleader
@@ -145,4 +149,6 @@ noremap <leader>ss :call StripWhitespace()<CR>
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 " Toggle line numbers for quick copy and paste.
 map <F5> :set invnumber<CR>
+" Toggle specials. Usually needed for clean copy / paste.
+map <F7> :set list!<CR>
 
