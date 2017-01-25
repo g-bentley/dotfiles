@@ -129,6 +129,9 @@ if has('autocmd')
     filetype plugin indent on
     " Treat .json files as .js
     autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+    " Treat .tt and .tt2 as Template Toolkit.
+    autocmd BufNewFile,BufRead *.tt setfiletype tt2
+    autocmd BufNewFile,BufRead *.tt2 setfiletype tt2
     " Use actual tab chars in Makefiles.
     autocmd FileType make set tabstop=8 shiftwidth=8 softtabstop=0 noexpandtab
     " Restore cursor position (Debian-ism is sometimes a beautiful thing)
